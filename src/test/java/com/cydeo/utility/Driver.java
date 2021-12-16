@@ -1,5 +1,7 @@
 package com.cydeo.utility;
 
+
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +17,7 @@ public class Driver {
 
 
     // private static WebDriver obj ;   singleton
-     private  static InheritableThreadLocal<WebDriver> driverPool=new InheritableThreadLocal<>();   // parallel
+    private  static InheritableThreadLocal<WebDriver> driverPool=new InheritableThreadLocal<>();   // parallel
 
     private Driver(){ }
 
@@ -49,14 +51,14 @@ public class Driver {
                     break;
                 case "chrome" :
                     WebDriverManager.chromedriver().setup();
-                   //  obj = new ChromeDriver();  singleton
+                    //  obj = new ChromeDriver();  singleton
                     driverPool.set(new ChromeDriver());  // parallel
                     break;
                 case "firefox" :
                     WebDriverManager.firefoxdriver().setup();
                     // obj = new FirefoxDriver();  singleton
                     driverPool.set(new FirefoxDriver()); // parallel
-                     break;
+                    break;
                 // other browsers omitted
                 default:
                     // obj = null ;  singleton
@@ -64,7 +66,7 @@ public class Driver {
                     System.out.println("UNKNOWN BROWSER TYPE!!! " + browserName);
             }
             // return obj ; singleton
-             return driverPool.get(); // parallel
+            return driverPool.get(); // parallel
 
 
 
@@ -87,14 +89,13 @@ public class Driver {
         // check if we have WebDriver instance or not
         // basically checking if obj is null or not
         // if not null
-            // quit the browser
-            // make it null , because once quit it can not be used
+        // quit the browser
+        // make it null , because once quit it can not be used
        /* if(obj != null ){   SINGLETON
             obj.quit();
             // so when ask for it again , it gives us not quited fresh driver
             obj = null ;
         }
-
         */
 
         if(driverPool.get() != null ){   //PARALLEL

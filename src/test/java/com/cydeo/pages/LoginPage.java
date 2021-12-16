@@ -1,7 +1,6 @@
 package com.cydeo.pages;
 
 
-
 import com.cydeo.utility.ConfigReader;
 import com.cydeo.utility.Driver;
 import org.openqa.selenium.WebElement;
